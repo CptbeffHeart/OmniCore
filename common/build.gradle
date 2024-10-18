@@ -5,7 +5,7 @@ plugins {
     id 'application'
 }
 
-group = 'com.expectale'
+group = 'com.poudlard.common'
 version = '1.0-SNAPSHOT'
 
 repositories {
@@ -21,9 +21,26 @@ repositories {
 }
 
 dependencies {
-    api "io.papermc.paper:paper-api:1.21-R0.1-SNAPSHOT"
+    compileOnly "io.papermc.paper:paper-api:1.21-R0.1-SNAPSHOT"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
 }
+
+/*subprojects {
+    publishing {
+        publications.configureEach {
+            pom.withXml(configureMavenCentralMetadata)
+        }
+        publications {
+            mavenPublication(MavenPublication) {
+                from components.kotlin
+
+                groupId 'com.github.CptbeffHeart'
+                artifactId 'OmniCore-common'
+                version $version
+            }
+        }
+    }
+}*/
 
 tasks.withType(KotlinCompile).configureEach {
     kotlinOptions.jvmTarget = "21"
