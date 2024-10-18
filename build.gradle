@@ -1,6 +1,5 @@
 plugins {
     id 'org.jetbrains.kotlin.jvm' version '1.9.22'
-    id 'application'
 }
 
 group = 'com.poudlard'
@@ -12,16 +11,4 @@ repositories {
 
 dependencies {
     compileOnly project(':common')
-}
-
-test {
-    useJUnitPlatform()
-}
-
-compileKotlin {
-    kotlinOptions.jvmTarget = '21'
-}
-
-compileTestKotlin {
-    kotlinOptions.jvmTarget = '21'
 }
