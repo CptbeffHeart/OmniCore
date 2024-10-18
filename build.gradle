@@ -25,3 +25,19 @@ compileKotlin {
 compileTestKotlin {
     kotlinOptions.jvmTarget = '21'
 }
+
+/*
+subprojects {
+    configure(PublishingExtension) {
+        println("Configuring project: Omnicore-${project.name}")
+        publications {
+            maven(MavenPublication) {
+                groupId = 'com.github.CptbeffHeart'
+                artifactId = "Omnicore-${project.name}"
+                version = project.version
+
+                from components.kotlin
+            }
+        }
+    }
+}*/
