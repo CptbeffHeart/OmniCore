@@ -1,0 +1,4 @@
+rootProject.name = 'OmniCore'
+
+include 'common'
+include 'chat-interaction'
