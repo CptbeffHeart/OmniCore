@@ -1,36 +1,26 @@
 plugins {
-    id 'org.jetbrains.kotlin.jvm' version '1.9.22'
+    id 'maven-publish'
+    id 'org.jetbrains.kotlin.jvm' version '1.9.22' apply false
 }
 
-group = 'com.poudlard'
-version = '1.0-SNAPSHOT'
-
-repositories {
-    mavenCentral()
-    maven {
-        name = "papermc-repo"
-        url = "https://repo.papermc.io/repository/maven-public/"
+subprojects {
+    apply plugin: "maven-publish"
+    apply plugin: "org.jetbrains.kotlin.jvm"
+    publishing {
+        repositories {
+            maven {
+                name = "GitHubPackages"
+                url = uri("https://maven.pkg.github.com/CptbeffHeart/OmniCore")
+                credentials {
+                    username = System.getenv("GIT_USERNAME")
+                    password = System.getenv("TOKEN")
+                }
+            }
+        }
+        publications {
+            gpr(MavenPublication) {
+                from(components.kotlin)
+            }
+        }
     }
-    maven {
-        name = "sonatype"
-        url = "https://oss.sonatype.org/content/groups/public/"
-    }
-}
-
-dependencies {
-    compileOnly "io.papermc.paper:paper-api:1.21-R0.1-SNAPSHOT"
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
-    compileOnly project(':common')
-}
-
-test {
-    useJUnitPlatform()
-}
-
-compileKotlin {
-    kotlinOptions.jvmTarget = '21'
-}
-
-compileTestKotlin {
-    kotlinOptions.jvmTarget = '21'
 }
